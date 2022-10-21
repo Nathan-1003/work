@@ -10,7 +10,7 @@ db = pymysql.connect(host='34.142.180.39',
 
 #def test_select_channel():
 
-sql_cmd = 'SELECT  COUNT(DISTINCT channel_id) FROM data_center.channel'
+sql_cmd = 'SELECT COUNT(DISTINCT channel_id) FROM data_center.channel'
 
 cur=db.cursor()
 
