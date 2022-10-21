@@ -10,7 +10,7 @@ db = pymysql.connect(host='34.142.180.39',
 
 #def test_select_channel():
 
-sql_cmd = 'SELECT * FROM channel WHERE uuid="1_default" '
+sql_cmd = 'SELECT DISTINCT  COUNT(channel_id) FROM data_center.channel'
 
 cur=db.cursor()
 
@@ -20,9 +20,9 @@ result = cur.fetchall()
 
 print(result)
 
-#print(type(result)) 確認type
+print(type(result))
 
-str_result = ''.join(str(result).strip()) #轉換字串 將result tuple轉為str
+str_result = ''.join(str(result).strip()) #轉換字串 將result tupl轉為str
 
 
 app = flask.Flask(__name__)
@@ -33,5 +33,10 @@ def hello():
 
 if __name__ == '__main__':
     app.run()
+
+
+
+
+
 
 
