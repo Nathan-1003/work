@@ -22,7 +22,7 @@ print(result)
 
 print(type(result))
 
-str_result = ''.join(str(result).strip()) #轉換字串 將result tupl轉為str
+str_result = ''.join(str(result)) #轉換字串 將result tupl轉為str
 
 
 app = flask.Flask(__name__)
