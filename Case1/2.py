@@ -18,12 +18,15 @@ cur.execute(sql_cmd)
 
 result = cur.fetchall()
 
-print(result)
+#print(result)
 
-print(type(result))
+#print(type(result)) #確認tupl
 
 str_result = ''.join(str(result)) #轉換字串 將result tupl轉為str
 
+str_result = re.sub("[(,)]","",str_result)#去除(,)
+
+print(str_result)
 
 app = flask.Flask(__name__)
 @app.route("/")
