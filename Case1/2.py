@@ -1,3 +1,4 @@
+import re
 import pymysql  #pip3 install PyMySQL ,pip install mysql-connector-python
 import flask
 
