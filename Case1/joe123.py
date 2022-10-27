@@ -1,5 +1,5 @@
-from dash import Dash, dash_table
-import pandas as pd
+from dash import Dash, dash_table  #pip install dash
+import pandas as pd.  #pip install pandas
 
 db_connection_str = 'mysql+pymysql://root:oh_my_ody!@34.142.180.39:13306/data_center'
 
