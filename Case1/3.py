@@ -1,47 +1,20 @@
-import re
+from dash import Dash ,dash_table  #pip install dash
+import pandas as pd #pip install pandas
 
-import pymysql  #pip3 install PyMySQL ,pip install mysql-connector-python
-import HTMLTable #pip install html-table
-import flask
-import pandas as pd
+db_connection = 'mysql+pymysql://root:oh_my_ody!@34.142.180.39:13306/data_center'
+#db_connection_str = 'mysql+pymysql://mysql_user:mysql_password@mysql_host/mysql_db'
+#db_connection = create_engine(db_connection_str)
 
+sql_channel_id = pd.read_sql('SELECT channel_id FROM data_center.channel GROUP BY channel_id ORDER BY channel_id', con=db_connection)
+#sql_channel_id = pd.read_sql('SELECT channel_id,count(*) AS count FROM data_center.channel GROUP BY channel_id ORDER BY channel_id', con=db_connection_str)
 
-db = pymysql.connect(host='34.142.180.39',
-                     port=13306,
-                     user='root',
-                     passwd='oh_my_ody!',
-                     db = 'data_center',
-                     charset='utf8')
+#print(sql_cmd)
+#print(df)
 
-#def test_select_channel():
+app = Dash(__name__)
 
-#sql_cmd = 'SELECT  COUNT(DISTINCT channel_id) FROM data_center.channel'
-
-my_sql = db.cursor()
-
-sql_cmd = 'SELECT channel_id FROM data_center.channel GROUP BY channel_id'
-
-my_sql.execute(sql_cmd)
-
-result = my_sql.fetchall()
-
-str_result = ''.join(str(result)) #轉換字串 將result tupl轉為str
-
-str_result = re.sub("[(,)]","",str_result) #去除(,)
-
-print(str_result)
-
-table = HTMLTable(test='channel')
-table.append_header_rows(())
+app.layout = dash_table.DataTable(sql_channel_id .to_dict('records'), [{"name": i, "id": i} for i in sql_channel_id .columns]) #排版
 
 
-
-#
-# app = flask.Flask(__name__)
-# @app.route("/")
-#
-# def hello():
-#     return(str_result)
-#
-# if __name__ == '__main__':
-#     app.run()
+if __name__ == '__main__':
+    app.run_server(debug=True)
