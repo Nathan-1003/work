@@ -1,5 +1,7 @@
 import requests
 import json
+import numpy as np
+
 
 url = 'http://8.219.83.66:8088/admin/v2/login'
 headers = {
@@ -30,9 +32,41 @@ def rechargeCashoutDiff():
     }
     data = '{"beginTime":"1668614400000","channelId":"","currency":"","device":"","endTime":"1668700799999","openChannelId":""}'
     r = requests.post(url, headers=headers, data=data)
-    #print(r.text)
-    if r.json== 0:
-        print("")
+    response = r.json()#轉json
+    if response["data"]["rechargeCashoutDiff"] == 0:
+        print("rechargeCashoutDiff_Error")
+    if response["data"]["activityDetailCount"] == 0:
+        print("activityDetailCount_Error")
+    if response["data"]["activityMoney"] == 0:
+        print("activityMoney_Error")
+    if response["data"]["activityUserCount"] == 0:
+        print("activityUserCount_Error")
+    if response["data"]["cashout"] == 0:
+        print("cashout_Error")
+    if response["data"]["cashoutCount"] == 0:
+        print("cashoutCount_Error")
+    if response["data"]["cashoutUsers"] == 0:
+        print("cashoutUsers_Error")
+    if response["data"]["manualRechargeGift"] == 0:
+        print("manualRechargeGift_Error")
+    if response["data"]["manualRechargeGiftCount"] == 0:
+        print("manualRechargeGiftCount_Error")
+    if response["data"]["onlineRecharge"] == 0:
+        print("onlineRecharge_Error")
+    if response["data"]["onlineRechargeCount"] == 0:
+        print("onlineRechargeCount_Error")
+    if response["data"]["onlineRechargeUsers"] == 0:
+        print("onlineRechargeUsers_Error")
+
+    # print(response["data"])
+    # print(response["data"]["activityMoney"])
+    #print(response["data"]["rechargeCashoutDiff"]["activityDetailCount"]["activityMoney"]["activityUserCount"]["cashout"]["cashoutCount"]["cashoutUsers"]["manualRechargeGift"]["manualRechargeGiftCount"]["manualRechargeGiftUsers"]["onlineRecharge"]["onlineRechargeCount"]["onlineRechargeUsers"])#datd中rechargeCashoutDiff
+
+
+   # print(r.text)
+   #  print(r.json()["type"])
+    # if r.json== 0:
+    #     print("")
 
 def newRegCount():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dataSummary/newRegCount/'
