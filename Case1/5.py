@@ -885,4 +885,4 @@ if __name__== '__main__':
     #businessReport() #經營報表
     #dailyReport() #日報表
     #gameBet() #遊戲注單列表
-    #gameBetDetail() #遊戲數據列表
+    gameBetDetail() #遊戲數據列表
