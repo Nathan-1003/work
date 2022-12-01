@@ -669,7 +669,7 @@ def businessReport():
     if response["totalData"]["firstRechargeCount"] == 0:
         print("firstRechargeCount_Error")
     if response["totalData"]["fsMoney"] == 0:
-        print("fsMoney_Error，This Channel NO fsMoney")
+        print("fsMoney_Error")
     if response["totalData"]["playerCount"] == 0:
         print("playerCount_Error")
     if response["totalData"]["recharge"] == 0:
@@ -702,7 +702,7 @@ def businessReport():
     if response["data"][186]["firstRechargeCount"] == 0:
         print("firstRechargeCount_Error")
     if response["data"][186]["fsMoney"] == 0:
-        print("fsMoney_Error")
+        print("fsMoney_Error，This Channel NO fsMoney")
     if response["data"][186]["playerCount"] == 0:
         print("playerCount_Error")
     if response["data"][186]["recharge"] == 0:
