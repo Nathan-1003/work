@@ -2,7 +2,8 @@ import requests
 import json
 import numpy as np
 import time
-import datetime;
+import datetime
+import re
 
 today = datetime.date.today()
 date_begintime_stamp=int(time.mktime(today.timetuple())) - 86400
@@ -17,9 +18,9 @@ data = '{"username":"admin","password":"1234"}'
 # data = {'username':'admin','password':'1234'}
 # data=json.dumps(data)
 r = requests.post(url, headers=headers, data=data)
-print(r.text) #成功登入
+#print(r.text) #成功登入資訊
 t = json.loads(r.text)#抓取token
-token = t["token"] #抓取token
+token = t["token"] #抓取token欄位數值
 
 #print(token)
 
@@ -47,9 +48,10 @@ def rechargeCashoutDiff():
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
     #print(_data)
-    print(r)
+    #print(r)
     response = r.json()  # 轉json
-    print(response)
+    #print(response)
+    #print(response["data"]["rechargeCashoutDiff"])
     if response["data"]["rechargeCashoutDiff"] == 0:
         print("rechargeCashoutDiff_Error")
     if response["data"]["activityDetailCount"] == 0:
@@ -74,8 +76,10 @@ def rechargeCashoutDiff():
         print("onlineRechargeCount_Error")
     if response["data"]["onlineRechargeUsers"] == 0:
         print("onlineRechargeUsers_Error")
+    if response["data"]["rechargeCashoutDiff"] == 0:
+        print("rechargeCashoutDiff_Error")
     else :
-        print("Check OK")
+        print("數據總表充提差(13)_Check OK")
 #首頁
 def newRegCount():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dataSummary/newRegCount/'
@@ -95,8 +99,8 @@ def newRegCount():
     print(r)
     response = r.json()  # 轉json
     print(response)
-    if response["data"]["activeOnline"] == 0:
-        print("activeOnline_Error")
+    # if response["data"]["activeOnline"] == 0:
+    #     print("activeOnline_Error")
     if response["data"]["dailyAvgAct"] == 0:
         print("dailyAvgAct_Error")
     if response["data"]["dailyAvgOnline"] == 0:
@@ -105,14 +109,14 @@ def newRegCount():
         print("newRegCount_Error")
     if response["data"]["onlinePodcast"] == 0:
         print("onlinePodcast_Error")
-    if response["data"]["onlineUser"] == 0:
-        print("onlineUser_Error")
+    # if response["data"]["onlineUser"] == 0:
+    #     print("onlineUser_Error")
     if response["data"]["totalBindCount"] == 0:
         print("totalBindCount_Error")
     if response["data"]["totalRegCount"] == 0:
         print("totalRegCount_Error")
     else :
-        print("Check OK")
+        print("數據總表新增會員欄位(6)_Check OK")
 #首頁
 def firstDayPayRate():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dataSummary/firstDayPayRate/'
@@ -147,7 +151,7 @@ def firstDayPayRate():
     if response["data"]["secondRechargeRate"] == 0:
         print("secondRechargeRate_Error")
     else :
-        print("Check OK")
+        print("數據總表付費率(5)_Check OK")
 #首頁
 def agentData():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dataSummary/agentData/'
@@ -180,7 +184,7 @@ def agentData():
     if response["data"]["agentUserCount"] == 0:
         print("agentUserCount_Error")
     else :
-        print("Check OK")
+        print("數據總表代理數據(6)_Check OK")
 #首頁
 def gameData():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dataSummary/gameData/'
@@ -206,6 +210,8 @@ def gameData():
         print("boinLotteryCount_Error")
     if response["data"]["boinLotteryIncome"] == 0:
         print("boinLotteryIncome_Error")
+    if response["data"]["boinLotteryKillRate"] == 0:
+        print("boinLotteryKillRate_Error")
     if response["data"]["boinLotteryTotalBet"] == 0:
         print("boinLotteryTotalBet_Error")
     if response["data"]["boinLotteryUserCount"] == 0:
@@ -314,20 +320,20 @@ def gameData():
         print("totalBetUserCount_Error")
     if response["data"]["totalIncome"] == 0:
         print("totalIncome_Error")
-    if response["data"]["unknownAvailableBetSum"] == 0:
-        print("unknownAvailableBetSum_Error")
-    if response["data"]["unknownCount"] == 0:
-        print("unknownCount_Error")
-    if response["data"]["unknownIncome"] == 0:
-        print("unknownIncome_Error")
-    if response["data"]["unknownKillRate"] == 0:
-        print("unknownKillRate_Error")
-    if response["data"]["unknownTotalBet"] == 0:
-        print("unknownTotalBet_Error")
-    if response["data"]["unknownUserCount"] == 0:
-        print("unknownUserCount_Error")
+    # if response["data"]["unknownAvailableBetSum"] == 0:
+    #     print("unknownAvailableBetSum_Error")
+    # if response["data"]["unknownCount"] == 0:
+    #     print("unknownCount_Error")
+    # if response["data"]["unknownIncome"] == 0:
+    #     print("unknownIncome_Error")
+    # if response["data"]["unknownKillRate"] == 0:
+    #     print("unknownKillRate_Error")
+    # if response["data"]["unknownTotalBet"] == 0:
+    #     print("unknownTotalBet_Error")
+    # if response["data"]["unknownUserCount"] == 0:
+    #     print("unknownUserCount_Error")
     else :
-        print("Check OK")
+        print("數據總表遊戲數據(52)_Check OK")
 #首頁
 def podcastDiamond():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dataSummary/podcastDiamond/'
@@ -343,8 +349,8 @@ def podcastDiamond():
             'openChannelId':''}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
-    print(r.text)
+    #print(_data)
+    #print(r.text)
     response = r.json()
     print(response)
     if response["data"]["compareRechargeDiamond"] == 0:
@@ -365,10 +371,10 @@ def podcastDiamond():
         print("rechargeValue_Error")
     if response["data"]["ticketForPodcast"] == 0:
         print("tticketForPodcast_Error")
-    if response["data"]["useDiamond"] == 0:
-        print("useDiamond_Error")
+    # if response["data"]["useDiamond"] == 0:
+    #     print("useDiamond_Error")
     else :
-        print("Check OK")
+        print("數據總表直播數據(9)_Check OK")
 #首頁
 def diamondConsumption():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dataSummary/diamondConsumption/'
@@ -384,8 +390,8 @@ def diamondConsumption():
             'openChannelId':''}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
-    print(r.text)
+    #print(_data)
+    #print(r.text)
     response = r.json()
     print(response)
     if response["data"]["totalDiamond"] == 0:
@@ -393,8 +399,8 @@ def diamondConsumption():
     if response["data"]["totalUserCount"] == 0:
         print("totalUserCount_Error")
     else :
-        print("Check OK")
-#會員數據
+        print("數據總表鑽石消耗(2)_Check OK")
+
 def profiles():
     url = ' http://8.219.83.66:8088/admin/dataCenter/users/profiles/'
     headers = {
@@ -410,16 +416,16 @@ def profiles():
             'openChannelId': ''}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
-    print(r)
+    # print(_data)
+    # print(r)
     response = r.json()  # 轉json
     print(response)
-    if response["data"]["activities"] == 0:
-        print("activities_Error")
-    if response["data"]["cashes"] == 0:
-        print("cashes_Error")
-    if response["data"]["payments"] == 0:
-        print("payments_Error")
+    # if response["data"]["activities"] == 0:
+    #     print("activities_Error")
+    # if response["data"]["cashes"] == 0:
+    #     print("cashes_Error")
+    # if response["data"]["payments"] == 0:
+    #     print("payments_Error")
     if response["data"]["totalActivity"] == 0:
         print("totalActivity_Error")
     if response["data"]["totalCash"] == 0:
@@ -427,7 +433,7 @@ def profiles():
     if response["data"]["totalPayment"] == 0:
         print("totalPayment_Error")
     else :
-        print("Check OK")
+        print("數據總表_會員財務數據-會員(3)_Check OK")
 
 def online():
     url = ' http://8.219.83.66:8088/admin/dataCenter/users/online/'
@@ -444,20 +450,20 @@ def online():
             'openChannelId': ''}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
-    print(r)
+    # print(_data)
+    # print(r)
     response = r.json()  # 轉json
     print(response)
-    if response["data"]["active"] == 0:
-        print("active_Error")
+    # if response["data"]["active"] == 0:
+    #     print("active_Error")
     if response["data"]["dailyAvgActive"] == 0:
         print("dailyAvgActive_Error")
     if response["data"]["dailyAvgOnline"] == 0:
         print("dailyAvgOnline_Error")
-    if response["data"]["online"] == 0:
-        print("online_Error")
-    if response["data"]["register"] == 0:
-        print("register_Error")
+    # if response["data"]["online"] == 0:
+    #     print("online_Error")
+    # if response["data"]["register"] == 0:
+    #     print("register_Error")
     #if response["data"]["totalActive"] == 0:
     #    print("totalActive_Error")
     #if response["data"]["totalOnline"] == 0:
@@ -465,7 +471,7 @@ def online():
     if response["data"]["totalRegister"] == 0:
         print("totalRegister_Error")
     else :
-        print("Check OK")
+        print("數據總表_會員財務數據-活躍(3)_Check OK")
 
 def recharge():
     url = ' http://8.219.83.66:8088/admin/dataCenter/users/recharge/'
@@ -482,13 +488,132 @@ def recharge():
             'openChannelId': ''}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
+    # print(_data)
     print(r)
     response = r.json()  # 轉json
     print(response)
-    if response["data"]["secondRechargeUsers"]["value"] == 0:
-        print("value_Error")
-#有問題待做
+    #print(response['data']['dayRange'][1]['firstRechargeRate'])
+    if response["data"]['dayRange'][1]['firstRechargeRate'] == 0:
+        print("3day_firstRechargeRate_Error")
+    if response["data"]['dayRange'][1]['secondRechargeCount'] == 0:
+        print("3day_secondRechargeCount_Error")
+    if response["data"]['dayRange'][2]['firstRechargeRate'] == 0:
+        print("5day_firstRechargeRate_Error")
+    if response["data"]['dayRange'][2]['secondRechargeCount'] == 0:
+        print("5day_secondRechargeCount_Error")
+    if response["data"]['dayRange'][3]['firstRechargeRate'] == 0:
+        print("7day_firstRechargeRate_Error")
+    if response["data"]['dayRange'][3]['secondRechargeCount'] == 0:
+        print("7day_secondRechargeCount_Error")
+    if response["data"]['dayRange'][4]['firstRechargeRate'] == 0:
+        print("14day_firstRechargeRate_Error")
+    if response["data"]['dayRange'][4]['secondRechargeCount'] == 0:
+        print("14day_secondRechargeCount_Error")
+    if response["data"]['dayRange'][5]['firstRechargeRate'] == 0:
+        print("30day_firstRechargeRate_Error")
+    if response["data"]['dayRange'][5]['secondRechargeCount'] == 0:
+        print("30day_secondRechargeCount_Error")
+    else:
+        print("數據總表_會員財務數據-首充/二充(10)_Check OK")
+
+def bet_blocks():
+    url = ' http://8.219.83.66:8088/admin/dataCenter/bets/blocks'
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": token
+    }
+    data = {'beginTime': date_begintime_stamp,
+            'channelId': '',
+            'currency': '',
+            'device': '',
+            'endTime': date_endtime_stamp,
+            'groupBy':'1',
+            'openChannelId': ''}
+    _data = json.dumps(data)
+    r = requests.post(url, headers=headers, data=_data)
+    # print(_data)
+    print(r)
+    response = r.json()  # 轉json
+    print(response)
+    if response["data"]["availableBetTotal"] == 0:
+        print("availableBetTotal_Error")
+    if response["data"]["betTotal"] == 0:
+        print("betTotal_Error")
+    if response["data"]["gameProfit"] == 0:
+        print("gameProfit_Error")
+    if response["data"]["totalPeopleOfBets"] == 0:
+        print("totalPeopleOfBets_Error")
+    else:
+        print('數據總表_遊戲數據_Check OK')
+
+def live_blocks():
+    url = ' http://8.219.83.66:8088/admin/dataCenter/stream/blocks'
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": token
+    }
+    data = {'beginTime': date_begintime_stamp,
+            'channelId': '',
+            'currency': '',
+            'device': '',
+            'endTime': date_endtime_stamp,
+            'groupBy':'1',
+            'openChannelId': ''}
+    _data = json.dumps(data)
+    r = requests.post(url, headers=headers, data=_data)
+    # print(_data)
+    print(r)
+    response = r.json()  # 轉json
+    print(response['data']['pieChart']['routineConsumption'])
+    if response["data"]["availableBetTotal"] == 0:
+        print("availableBetTotal_Error")
+    if response["data"]["avgAmount"] == 0:
+        print("avgAmount_Error")
+    if response["data"]["avgReduce"] == 0:
+        print("avgReduce_Error")
+    if response["data"]["betTotal"] == 0:
+        print("betTotal_Error")
+    if response["data"]["diamondExchangeTotal"] == 0:
+        print("diamondExchangeTotal_Error")
+    if response["data"]["diamondExchangeTotalAmount"] == 0:
+        print("diamondExchangeTotalAmount_Error")
+    if response["data"]["exchangeTotal"] == 0:
+        print("exchangeTotal_Error")
+    if response["data"]["firstDiamondExchangeTotal"] == 0:
+        print("firstDiamondExchangeTotal_Error")
+    if response["data"]["firstExchangeTotal"] == 0:
+        print("firstExchangeTotal_Error")
+    if response["data"]["firstExchangeTotalAmount"] == 0:
+        print("firstExchangeTotalAmount_Error")
+    if response["data"]["jbcpBarBetTotal"] == 0:
+        print("jbcpBarBetTotal_Error")
+    if response["data"]["jbcpBarTicketTotal"] == 0:
+        print("jbcpBarTicketTotal_Error")
+    if response["data"]["profit"] == 0:
+        print("profit_Error")
+    if response["data"]["siteDiamondReducet"] == 0:
+        print("siteDiamondReducet_Error")
+    if response["data"]["totalProfit"] == 0:
+        print("totalProfit_Error")
+    if response['data']['pieChart']['barrage'] == 0:
+        print("barrage_Error")
+    if response['data']['pieChart']['buyVip'] == 0:
+        print("buyVip_Error")
+    if response['data']['pieChart']['byLiveConsumption'] == 0:
+        print("byLiveConsumption_Error")
+    if response['data']['pieChart']['giftGiving'] == 0:
+        print("giftGiving_Error")
+    if response['data']['pieChart']['itemBuy'] == 0:
+        print("itemBuy_Error")
+    if response['data']['pieChart']['proceedVip'] == 0:
+        print("proceedVip_Error")
+    if response['data']['pieChart']['routineConsumption'] == 0:
+        print("routineConsumption_Error")
+    if response['data']['pieChart']['totalUsedDiamond'] == 0:
+        print("totalUsedDiamond_Error")
+    else:
+        print('數據總表_直播數據(15)+鑽石支出(8)_Check OK')
+
 def businessReport():
     url = ' http://8.219.83.66:8088/admin/dataCenter/businessReport/'
     headers = {
@@ -533,8 +658,8 @@ def businessReport():
         print("rechargeCashDiff_Error")
     if response["totalData"]["regCount"] == 0:
         print("regCount_Error")
-    if response["totalData"]["totalBindCount"] == 0:
-        print("totalBindCount_Error")
+    # if response["totalData"]["totalBindCount"] == 0:
+    #     print("totalBindCount_Error")
     if response["totalData"]["totalUserCount"] == 0:
         print("totalUserCount_Error")
     if response["totalData"]["winBetDiff"] == 0:
@@ -542,8 +667,8 @@ def businessReport():
     if response["totalData"]["winBetDiffRechargeRate"] == 0:
         print("winBetDiffRechargeRate_Error")
     else :
-        print("Check OK")
-#經營報表
+        print("經營報表(15)_Check OK")
+
 def dailyReport():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dailyReport/'
     headers = {
@@ -558,13 +683,89 @@ def dailyReport():
             'openChannelId':'',}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
-    print(r)
+    # print(_data)
+    #print(r)
     response = r.json()  # 轉json
-    print(response)
-    if response["gameList"]["availableBetSum"] == 0:
-        print("availableBetSum_Error")
-#有問題待做
+    # print(response)
+    #print(response['data']['gameList'][0]['availableBetSum'])
+    if (response['data']['gameList'][0]['availableBetSum']) == 0:
+        print("gameList-availableBetSum_Error")
+    if (response['data']['gameList'][0]['bet']) == 0:
+        print("gameList-bet_Error")
+    if (response['data']['gameList'][0]['betUserCount']) == 0:
+        print("gameList-betUserCount_Error")
+    if (response['data']['gameList'][0]['dataTime']) == 0:
+        print("gameList-dataTime_Error")
+    if (response['data']['gameList'][0]['fsMoney']) == 0:
+        print("gameList-fsMoney_Error")
+    if (response['data']['gameList'][0]['income']) == 0:
+        print("gameList-income_Error")
+    else:
+        print("日報表-遊戲數據(6)_Check OK")
+    #print(response['data']['liveList'][0]['activityMoney'])
+    if (response['data']['liveList'][0]['activityMoney']) == 0:
+        print("liveList-activityMoney_Error")
+    if (response['data']['liveList'][0]['cashout']) == 0:
+        print("liveList-cashout_Error")
+    if (response['data']['liveList'][0]['dataTime']) == 0:
+        print("liveList-dataTime_Error")
+    if (response['data']['liveList'][0]['diamondGift']) == 0:
+        print("liveList-diamondGift_Error")
+    if (response['data']['liveList'][0]['diamondRecharge']) == 0:
+        print("liveList-diamondRecharge_Error")
+    if (response['data']['liveList'][0]['diamondRechargeCount']) == 0:
+        print("liveList-diamondRechargeCount_Error")
+    if (response['data']['liveList'][0]['diamondUse']) == 0:
+        print("liveList-diamondUse_Error")
+    if (response['data']['liveList'][0]['recharge']) == 0:
+        print("liveList-recharge_Error")
+    else:
+        print("日報表-直播數據(8)_Check OK")
+# for gameList in (response['data']['gameList']):
+    #     if (gameList.get('availableBetSum')) == 0:
+    #         print('availableBetSum_Error')
+    #     if (gameList.get('bet')) == 0:
+    #         print('bet_Error')
+    #     if (gameList.get('betUserCount')) == 0:
+    #         print('betUserCount_Error')
+    #     if (gameList.get('dataTime')) == 0:
+    #         print('dataTime_Error')
+    #     if (gameList.get('fsMoney')) == 0:
+    #         print('fsMoney_Error')
+    #     if (gameList.get('income')) == 0:
+    #         print('income_Error')
+    #     else:
+    #         print("日報表-遊戲數據_Check OK")
+    # for liveList in (response['data']['liveList']):
+    #     print(type(liveList))
+    #     # print(liveList.get('activityMoney'))
+    #     if (liveList.get('activityMoney')) == 0:
+    #         print('activityMoney_Error')
+    #     if (liveList.get('cashout')) == 0:
+    #         print('cashout_Error')
+    #     if (liveList.get('dataTime')) == 0:
+    #         print('dataTime_Error')
+    #     if (liveList.get('diamondGift')) == 0:
+    #         print('diamondGift_Error')
+    #     if (liveList.get('diamondRecharge')) == 0:
+    #         print('diamondRecharge_Error')
+    #     if (liveList.get('diamondRechargeCount')) == 0:
+    #         print('diamondRechargeCount_Error')
+    #     if (liveList.get('diamondUse')) == 0:
+    #         print('diamondUse_Error')
+    #     if (liveList.get('recharge')) == 0:
+    #         print('recharge_Error')
+    #     else:
+    #         print("日報表-直播數據(8)_Check OK")
+    #print(response['liveList']['recharge'])
+    #response1 =response.get("data",[])#第二層
+    # print(response['gameList'],[])
+    # print(response1[liveList])
+
+    # response1 =response.get("data",['liveList'])#第二層
+    # #print(response1)
+    # key = response1.keys()
+
 def gameBet():
     url = ' http://8.219.83.66:8088/admin/dataCenter/gameBet/'
     headers = {
@@ -585,7 +786,6 @@ def gameBet():
     #print(_data)
     print(r)
     response = r.json()  # 轉json
-    #print(response)
     if response["totalData"]["availableBetSum"] == 0:
         print("availableBetSum_Error")
     if response["totalData"]["betCount"] == 0:
@@ -599,7 +799,22 @@ def gameBet():
     if response["totalData"]["ticketForPodcast"] == 0:
         print("ticketForPodcast_Error")
     else:
-        print("availableBetSum/betCount/betSum/income/killRate/ticketForPodcast, check ok")
+        print("遊戲注單統計(6)_Check OK")
+    #print(response['data'][0])
+    if (response['data'][0]['availableBetSum']) == 0:
+        print("波音彩票availableBetSum_Error")
+    if (response['data'][0]['betCount']) == 0:
+        print("波音彩票betCount_Error")
+    if (response['data'][0]['betSum']) == 0:
+        print("波音彩票betSum_Error")
+    if (response['data'][0]['income']) == 0:
+        print("波音彩票income_Error")
+    if (response['data'][0]['killRate']) == 0:
+        print("波音彩票killRate_Error")
+    if (response['data'][0]['ticketForPodcast']) == 0:
+        print("遊戲注單統計_波音彩票ticketForPodcast_Error")
+    else:
+        print("類型-波音彩票(6)_Check OK")
 
 def gameBetDetail():
     url = 'http://8.219.83.66:8088/admin/dataCenter/gameBetDetail/'
@@ -622,6 +837,8 @@ def gameBetDetail():
     #print(_data)
     print(r)
     response = r.json()  # 轉json
+    # for i in response:
+    #     print(i)
     #print(response)
     if response["totalData"]["availableBetNum"] == 0:
         print("availableBetNum_Error")
@@ -636,21 +853,36 @@ def gameBetDetail():
     # if response["totalData"]["tip"] == 0:
     #     print("tip_Error")
     else:
-        print("availableBetNum/betCount/betNum/income/killRate, check ok")
+        print("遊戲數據列表(5)_Check ok")
+    #print(response["data"][9]["availableBetNum"])
+    if response["data"][9]["availableBetNum"] == 0:
+        print("availableBetNum_Error")
+    if response["data"][9]["betCount"] == 0:
+        print("betCount_Error")
+    if response["data"][9]["betNum"] == 0:
+        print("betNum_Error")
+    if response["data"][9]["income"] == 0:
+        print("income_Error")
+    if response["data"][9]["killRate"] == 0:
+        print("killRate_Error")
+    else:
+        print("類型-動博體育(5)_Check ok")
 
 if __name__== '__main__':
     #channels()
-    #rechargeCashoutDiff()
-    #newRegCount()
-    #firstDayPayRate()
-    #agentData()
-    #gameData()
-    #podcastDiamond()
-    #diamondConsumption()
-    #profiles()
-    #online()
-    #recharge() 有問題待做
-    #businessReport()
-    #dailyReport() 有問題待做
-    #gameBet()
-    gameBetDetail()
+    #rechargeCashoutDiff()#數據總表
+    #newRegCount()#數據總表
+    #firstDayPayRate()#數據總表
+    #agentData()#數據總表
+    #gameData()#數據總表
+    #podcastDiamond()#數據總表
+    #diamondConsumption()#數據總表
+    #profiles()#數據總表_會員財務數據-會員
+    #online()#數據總表_會員財務數據-活躍
+    #recharge() #數據總表_會員財務數據-首充/二充
+    #bet_blocks() #數據總表_遊戲數據
+    #live_blocks() #數據總表_遊戲數據
+    #businessReport() #經營報表
+    #dailyReport() #日報表
+    #gameBet() #遊戲注單列表
+    #gameBetDetail() #遊戲數據列表
