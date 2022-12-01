@@ -171,20 +171,20 @@ def agentData():
     # print(r)
     response = r.json()
     # print(response)
-    if response["data"]["agentAvailableBetNum"] == 0:
-        print("agentAvailableBetNum_Error")
-    if response["data"]["agentGameBonus"] == 0:
-        print("agentGameBonus_Error")
-    if response["data"]["agentLiveBonus"] == 0:
-        print("agentLiveBonus_Error")
-    if response["data"]["agentSubChannelCount"] == 0:
-        print("agentSubChannelCount_Error")
-    if response["data"]["agentTotalBonus"] == 0:
-        print("agentTotalBonus_Error")
-    if response["data"]["agentUserCount"] == 0:
-        print("agentUserCount_Error")
+    # if response["data"]["agentAvailableBetNum"] == 0:
+    #     print("agentAvailableBetNum_Error")
+    # if response["data"]["agentGameBonus"] == 0:
+    #     print("agentGameBonus_Error")
+    # if response["data"]["agentLiveBonus"] == 0:
+    #     print("agentLiveBonus_Error")
+    if response["data"]["totalAgentGameBonus"] == 0:
+        print("totalAgentGameBonus_Error")
+    if response["data"]["totalAgentLiveBonus"] == 0:
+        print("totalAgentLiveBonus_Error")
+    if response["data"]["totalAgentTotalBonus"] == 0:
+        print("totalAgentTotalBonus_Error")
     else :
-        print("數據總表代理數據(6)_Check OK")
+        print("數據總表代理數據(3)_Check OK")
 #首頁
 def gameData():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dataSummary/gameData/'
@@ -495,26 +495,46 @@ def recharge():
     #print(response['data']['dayRange'][1]['firstRechargeRate'])
     if response["data"]['dayRange'][1]['firstRechargeRate'] == 0:
         print("3day_firstRechargeRate_Error")
+    if response["data"]['dayRange'][1]['firstRechargeCount'] == 0:
+        print("3day_firstRechargeCount_Error")
+    if response["data"]['dayRange'][1]['secondRechargeRate'] == 0:
+        print("3day_secondRechargeRate_Error")
     if response["data"]['dayRange'][1]['secondRechargeCount'] == 0:
         print("3day_secondRechargeCount_Error")
     if response["data"]['dayRange'][2]['firstRechargeRate'] == 0:
         print("5day_firstRechargeRate_Error")
+    if response["data"]['dayRange'][2]['firstRechargeCount'] == 0:
+        print("5day_firstRechargeCount_Error")
+    if response["data"]['dayRange'][2]['secondRechargeRate'] == 0:
+        print("5day_secondRechargeRate_Error")
     if response["data"]['dayRange'][2]['secondRechargeCount'] == 0:
         print("5day_secondRechargeCount_Error")
     if response["data"]['dayRange'][3]['firstRechargeRate'] == 0:
+        print("7day_firstRechargeRate_Error")
+    if response["data"]['dayRange'][3]['firstRechargeCount'] == 0:
+        print("7day_firstRechargeCount_Error")
+    if response["data"]['dayRange'][3]['secondRechargeRate'] == 0:
         print("7day_firstRechargeRate_Error")
     if response["data"]['dayRange'][3]['secondRechargeCount'] == 0:
         print("7day_secondRechargeCount_Error")
     if response["data"]['dayRange'][4]['firstRechargeRate'] == 0:
         print("14day_firstRechargeRate_Error")
+    if response["data"]['dayRange'][4]['firstRechargeCount'] == 0:
+        print("14day_firstRechargeCount_Error")
+    if response["data"]['dayRange'][4]['secondRechargeRate'] == 0:
+        print("14day_secondRechargeRate_Error")
     if response["data"]['dayRange'][4]['secondRechargeCount'] == 0:
         print("14day_secondRechargeCount_Error")
     if response["data"]['dayRange'][5]['firstRechargeRate'] == 0:
         print("30day_firstRechargeRate_Error")
+    if response["data"]['dayRange'][5]['firstRechargeCount'] == 0:
+        print("30day_firstRechargeCount_Error")
+    if response["data"]['dayRange'][5]['secondRechargeRate'] == 0:
+        print("30day_secondRechargeRate_Error")
     if response["data"]['dayRange'][5]['secondRechargeCount'] == 0:
         print("30day_secondRechargeCount_Error")
     else:
-        print("數據總表_會員財務數據-首充/二充(10)_Check OK")
+        print("數據總表_會員財務數據-首充/二充(20)_Check OK")
 
 def bet_blocks():
     url = ' http://8.219.83.66:8088/admin/dataCenter/bets/blocks'
@@ -544,7 +564,7 @@ def bet_blocks():
     if response["data"]["totalPeopleOfBets"] == 0:
         print("totalPeopleOfBets_Error")
     else:
-        print('數據總表_遊戲數據_Check OK')
+        print('數據總表_遊戲數據(4)_Check OK')
 
 def live_blocks():
     url = ' http://8.219.83.66:8088/admin/dataCenter/stream/blocks'
@@ -627,7 +647,7 @@ def businessReport():
             'openChannelId':'',
             'orderByColumn':'channel_id',
             'pageNum':'1',
-            'pageSize':'20'}
+            'pageSize':'500'}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
     # print(_data)
@@ -649,7 +669,7 @@ def businessReport():
     if response["totalData"]["firstRechargeCount"] == 0:
         print("firstRechargeCount_Error")
     if response["totalData"]["fsMoney"] == 0:
-        print("fsMoney_Error")
+        print("fsMoney_Error，This Channel NO fsMoney")
     if response["totalData"]["playerCount"] == 0:
         print("playerCount_Error")
     if response["totalData"]["recharge"] == 0:
@@ -666,8 +686,41 @@ def businessReport():
         print("winBetDiff_Error")
     if response["totalData"]["winBetDiffRechargeRate"] == 0:
         print("winBetDiffRechargeRate_Error")
+
+    if response["data"][186]["availableBetSum"] == 0:
+        print("availableBetSum_Error")
+    if response["data"][186]["betSum"] == 0:
+        print("betSum_Error")
+    if response["data"][186]["cash"] == 0:
+        print("cash_Error")
+    if response["data"][186]["cashRechargeRate"] == 0:
+        print("cashRechargeRate_Error")
+    if response["data"][186]["exchangeDiamond"] == 0:
+        print("exchangeDiamond_Error")
+    if response["data"][186]["firstRecharge"] == 0:
+        print("firstRecharge_Error")
+    if response["data"][186]["firstRechargeCount"] == 0:
+        print("firstRechargeCount_Error")
+    if response["data"][186]["fsMoney"] == 0:
+        print("fsMoney_Error")
+    if response["data"][186]["playerCount"] == 0:
+        print("playerCount_Error")
+    if response["data"][186]["recharge"] == 0:
+        print("recharge_Error")
+    if response["data"][186]["rechargeCashDiff"] == 0:
+        print("rechargeCashDiff_Error")
+    if response["data"][186]["regCount"] == 0:
+        print("regCount_Error")
+        # if response["totalData"]["totalBindCount"] == 0:
+        #     print("totalBindCount_Error")
+    if response["data"][186]["totalUserCount"] == 0:
+        print("totalUserCount_Error")
+    if response["data"][186]["winBetDiff"] == 0:
+        print("winBetDiff_Error")
+    if response["data"][186]["winBetDiffRechargeRate"] == 0:
+        print("winBetDiffRechargeRate_Error")
     else :
-        print("經營報表(15)_Check OK")
+        print("經營報表(15)+商戶yy(15)_Check OK")
 
 def dailyReport():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dailyReport/'
@@ -871,19 +924,19 @@ def gameBetDetail():
 
 if __name__== '__main__':
     #channels()
-    rechargeCashoutDiff()#數據總表
-    newRegCount()#數據總表
-    firstDayPayRate()#數據總表
-    agentData()#數據總表
-    gameData()#數據總表
-    podcastDiamond()#數據總表
-    diamondConsumption()#數據總表
-    profiles()#數據總表_會員財務數據-會員
-    online()#數據總表_會員財務數據-活躍
-    recharge() #數據總表_會員財務數據-首充/二充
-    bet_blocks() #數據總表_遊戲數據
-    live_blocks() #數據總表_遊戲數據
-    businessReport() #經營報表
-    dailyReport() #日報表
-    gameBet() #遊戲注單列表
-    gameBetDetail() #遊戲數據列表
+    # rechargeCashoutDiff()#數據總表
+    # newRegCount()#數據總表
+    # firstDayPayRate()#數據總表
+    # agentData()#數據總表
+    # gameData()#數據總表
+    # podcastDiamond()#數據總表
+    # diamondConsumption()#數據總表
+    # profiles()#數據總表_會員財務數據-會員
+    # online()#數據總表_會員財務數據-活躍
+    # recharge() #數據總表_會員財務數據-首充/二充
+    # bet_blocks() #數據總表_遊戲數據
+    # live_blocks() #數據總表_遊戲數據
+     businessReport() #經營報表
+    # dailyReport() #日報表
+    # gameBet() #遊戲注單列表
+    # gameBetDetail() #遊戲數據列表
