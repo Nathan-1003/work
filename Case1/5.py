@@ -48,9 +48,9 @@ def rechargeCashoutDiff():
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
     #print(_data)
-    #print(r)
+    # print(r)
     response = r.json()  # 轉json
-    #print(response)
+    # print(response)
     #print(response["data"]["rechargeCashoutDiff"])
     if response["data"]["rechargeCashoutDiff"] == 0:
         print("rechargeCashoutDiff_Error")
@@ -95,10 +95,10 @@ def newRegCount():
             'openChannelId':''}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
-    print(r)
+    #print(_data)
+    # print(r)
     response = r.json()  # 轉json
-    print(response)
+    # print(response)
     # if response["data"]["activeOnline"] == 0:
     #     print("activeOnline_Error")
     if response["data"]["dailyAvgAct"] == 0:
@@ -111,8 +111,8 @@ def newRegCount():
         print("onlinePodcast_Error")
     # if response["data"]["onlineUser"] == 0:
     #     print("onlineUser_Error")
-    if response["data"]["totalBindCount"] == 0:
-        print("totalBindCount_Error")
+    # if response["data"]["totalBindCount"] == 0:
+    #     print("totalBindCount_Error")
     if response["data"]["totalRegCount"] == 0:
         print("totalRegCount_Error")
     else :
@@ -132,10 +132,10 @@ def firstDayPayRate():
             'openChannelId':''}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
-    print(r)
+    #print(_data)
+    # print(r)
     response = r.json()  # 轉json
-    print(response)
+    # print(response)
     if response["data"]["firstDayPayRate"] == 0:
         print("firstDayPayRate_Error")
     if response["data"]["firstRecharge"] == 0:
@@ -167,10 +167,10 @@ def agentData():
             'openChannelId':''}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
-    print(r)
+    #print(_data)
+    # print(r)
     response = r.json()
-    print(response)
+    # print(response)
     if response["data"]["agentAvailableBetNum"] == 0:
         print("agentAvailableBetNum_Error")
     if response["data"]["agentGameBonus"] == 0:
@@ -200,10 +200,10 @@ def gameData():
             'openChannelId':''}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
-    print(r)
+    # print(_data)
+    # print(r)
     response = r.json()
-    print(response)
+    # print(response)
     if response["data"]["boinLotteryAvailableBetSum"] == 0:
         print("boinLotteryAvailableBetSum_Error")
     if response["data"]["boinLotteryCount"] == 0:
@@ -352,7 +352,7 @@ def podcastDiamond():
     #print(_data)
     #print(r.text)
     response = r.json()
-    print(response)
+    # print(response)
     if response["data"]["compareRechargeDiamond"] == 0:
         print("compareRechargeDiamond_Error")
     if response["data"]["firstRechargeCount"] == 0:
@@ -393,7 +393,7 @@ def diamondConsumption():
     #print(_data)
     #print(r.text)
     response = r.json()
-    print(response)
+    # print(response)
     if response["data"]["totalDiamond"] == 0:
         print("totalDiamond_Error")
     if response["data"]["totalUserCount"] == 0:
@@ -419,7 +419,7 @@ def profiles():
     # print(_data)
     # print(r)
     response = r.json()  # 轉json
-    print(response)
+    # print(response)
     # if response["data"]["activities"] == 0:
     #     print("activities_Error")
     # if response["data"]["cashes"] == 0:
@@ -453,7 +453,7 @@ def online():
     # print(_data)
     # print(r)
     response = r.json()  # 轉json
-    print(response)
+    # print(response)
     # if response["data"]["active"] == 0:
     #     print("active_Error")
     if response["data"]["dailyAvgActive"] == 0:
@@ -489,9 +489,9 @@ def recharge():
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
     # print(_data)
-    print(r)
+    # print(r)
     response = r.json()  # 轉json
-    print(response)
+    # print(response)
     #print(response['data']['dayRange'][1]['firstRechargeRate'])
     if response["data"]['dayRange'][1]['firstRechargeRate'] == 0:
         print("3day_firstRechargeRate_Error")
@@ -532,9 +532,9 @@ def bet_blocks():
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
     # print(_data)
-    print(r)
+    # print(r)
     response = r.json()  # 轉json
-    print(response)
+    # print(response)
     if response["data"]["availableBetTotal"] == 0:
         print("availableBetTotal_Error")
     if response["data"]["betTotal"] == 0:
@@ -562,9 +562,9 @@ def live_blocks():
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
     # print(_data)
-    print(r)
+    # print(r)
     response = r.json()  # 轉json
-    print(response['data']['pieChart']['routineConsumption'])
+    # print(response['data']['pieChart']['routineConsumption'])
     if response["data"]["availableBetTotal"] == 0:
         print("availableBetTotal_Error")
     if response["data"]["avgAmount"] == 0:
@@ -630,10 +630,10 @@ def businessReport():
             'pageSize':'20'}
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
-    print(_data)
-    print(r)
+    # print(_data)
+    # print(r)
     response = r.json()  # 轉json
-    print(response)
+    # print(response)
     if response["totalData"]["availableBetSum"] == 0:
         print("availableBetSum_Error")
     if response["totalData"]["betSum"] == 0:
@@ -687,6 +687,8 @@ def dailyReport():
     #print(r)
     response = r.json()  # 轉json
     # print(response)
+    # print(list(response["data"].values()))
+    # if (list(response["data"].values())) == 0:
     #print(response['data']['gameList'][0]['availableBetSum'])
     if (response['data']['gameList'][0]['availableBetSum']) == 0:
         print("gameList-availableBetSum_Error")
@@ -765,7 +767,6 @@ def dailyReport():
     # response1 =response.get("data",['liveList'])#第二層
     # #print(response1)
     # key = response1.keys()
-
 def gameBet():
     url = ' http://8.219.83.66:8088/admin/dataCenter/gameBet/'
     headers = {
@@ -784,7 +785,7 @@ def gameBet():
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
     #print(_data)
-    print(r)
+    # print(r)
     response = r.json()  # 轉json
     if response["totalData"]["availableBetSum"] == 0:
         print("availableBetSum_Error")
@@ -835,7 +836,7 @@ def gameBetDetail():
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
     #print(_data)
-    print(r)
+    # print(r)
     response = r.json()  # 轉json
     # for i in response:
     #     print(i)
@@ -870,19 +871,19 @@ def gameBetDetail():
 
 if __name__== '__main__':
     #channels()
-    #rechargeCashoutDiff()#數據總表
-    #newRegCount()#數據總表
-    #firstDayPayRate()#數據總表
-    #agentData()#數據總表
-    #gameData()#數據總表
-    #podcastDiamond()#數據總表
-    #diamondConsumption()#數據總表
-    #profiles()#數據總表_會員財務數據-會員
-    #online()#數據總表_會員財務數據-活躍
-    #recharge() #數據總表_會員財務數據-首充/二充
-    #bet_blocks() #數據總表_遊戲數據
-    #live_blocks() #數據總表_遊戲數據
-    #businessReport() #經營報表
-    #dailyReport() #日報表
-    #gameBet() #遊戲注單列表
+    rechargeCashoutDiff()#數據總表
+    newRegCount()#數據總表
+    firstDayPayRate()#數據總表
+    agentData()#數據總表
+    gameData()#數據總表
+    podcastDiamond()#數據總表
+    diamondConsumption()#數據總表
+    profiles()#數據總表_會員財務數據-會員
+    online()#數據總表_會員財務數據-活躍
+    recharge() #數據總表_會員財務數據-首充/二充
+    bet_blocks() #數據總表_遊戲數據
+    live_blocks() #數據總表_遊戲數據
+    businessReport() #經營報表
+    dailyReport() #日報表
+    gameBet() #遊戲注單列表
     gameBetDetail() #遊戲數據列表
