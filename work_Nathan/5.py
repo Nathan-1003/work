@@ -52,6 +52,9 @@ def rechargeCashoutDiff():
     response = r.json()  # 轉json
     # print(response)
     #print(response["data"]["rechargeCashoutDiff"])
+    for key,value in response["data"].items():
+        if key !=("rechargeCashoutChartValue"):# !=>>key=該名及排除
+            print('{key}:{value}'.format(key = key , value = value))
     if response["data"]["rechargeCashoutDiff"] == 0:
         print("rechargeCashoutDiff_Error")
     if response["data"]["activityDetailCount"] == 0:
@@ -99,6 +102,9 @@ def newRegCount():
     # print(r)
     response = r.json()  # 轉json
     # print(response)
+    for key,value in response["data"].items():
+        if key != "onlineUser" and key !="activeOnline" :# !=>>key=該名及排除
+            print('{key}:{value}'.format(key = key , value = value))
     # if response["data"]["activeOnline"] == 0:
     #     print("activeOnline_Error")
     if response["data"]["dailyAvgAct"] == 0:
@@ -111,8 +117,8 @@ def newRegCount():
         print("onlinePodcast_Error")
     # if response["data"]["onlineUser"] == 0:
     #     print("onlineUser_Error")
-    # if response["data"]["totalBindCount"] == 0:
-    #     print("totalBindCount_Error")
+    if response["data"]["totalBindCount"] == 0:
+        print("totalBindCount_Error")
     if response["data"]["totalRegCount"] == 0:
         print("totalRegCount_Error")
     else :
@@ -136,6 +142,9 @@ def firstDayPayRate():
     # print(r)
     response = r.json()  # 轉json
     # print(response)
+    for key,value in response["data"].items():
+        if key != "secondRecharge" and key !="secondRechargeMoney" :# !=>>key=該名及排除
+            print('{key}:{value}'.format(key = key , value = value))
     if response["data"]["firstDayPayRate"] == 0:
         print("firstDayPayRate_Error")
     if response["data"]["firstRecharge"] == 0:
@@ -170,6 +179,9 @@ def agentData():
     #print(_data)
     # print(r)
     response = r.json()
+    for key,value in response["data"].items():
+        if key != "agentAvailableBetNum" and key !="agentGameBonus" and key !="agentLiveBonus":# !=>>key=該名及排除
+            print('{key}:{value}'.format(key = key , value = value))
     # print(response)
     # if response["data"]["agentAvailableBetNum"] == 0:
     #     print("agentAvailableBetNum_Error")
@@ -204,6 +216,9 @@ def gameData():
     # print(r)
     response = r.json()
     # print(response)
+    for key,value in response["data"].items():
+        if key !="djCount" and key !="djIncome" and key !="djAvailableBetSum" and key !="djKillRate" and key !="djTotalBet" and key !="djUserCount":
+            print('{key}:{value}'.format(key = key , value = value))
     if response["data"]["boinLotteryAvailableBetSum"] == 0:
         print("boinLotteryAvailableBetSum_Error")
     if response["data"]["boinLotteryCount"] == 0:
@@ -353,6 +368,9 @@ def podcastDiamond():
     #print(r.text)
     response = r.json()
     # print(response)
+    for key,value in response["data"].items():
+        if key !="podcastTotalTicket" and key !="ticketChartValue" and key !="useDiamond":
+            print('{key}:{value}'.format(key = key , value = value))
     if response["data"]["compareRechargeDiamond"] == 0:
         print("compareRechargeDiamond_Error")
     if response["data"]["firstRechargeCount"] == 0:
@@ -419,6 +437,9 @@ def profiles():
     # print(_data)
     # print(r)
     response = r.json()  # 轉json
+    for key,value in response["data"].items():
+        if key !="activities" and key !="cashes" and key !="payments":
+            print('{key}:{value}'.format(key = key , value = value))
     # print(response)
     # if response["data"]["activities"] == 0:
     #     print("activities_Error")
@@ -453,6 +474,9 @@ def online():
     # print(_data)
     # print(r)
     response = r.json()  # 轉json
+    for key,value in response["data"].items():
+        if key !="active"and key !="online" and key !="register" and key !="totalActive" and key !="totalOnline":
+            print('{key}:{value}'.format(key = key , value = value))
     # print(response)
     # if response["data"]["active"] == 0:
     #     print("active_Error")
@@ -491,6 +515,21 @@ def recharge():
     # print(_data)
     # print(r)
     response = r.json()  # 轉json
+    for key,value in response["data"]["dayRange"][1].items():
+        if key !="avgFirstRecharge" and key !="avgSecondRecharge" and key !="firstRecharge" and key !="secondRecharge":
+            print('{key}:{value}'.format(key=key, value=value))
+    for key,value in response["data"]["dayRange"][2].items():
+        if key != "avgFirstRecharge" and key != "avgSecondRecharge" and key != "firstRecharge" and key != "secondRecharge":
+            print('{key}:{value}'.format(key=key, value=value))
+    for key,value in response["data"]["dayRange"][3].items():
+        if key != "avgFirstRecharge" and key != "avgSecondRecharge" and key != "firstRecharge" and key != "secondRecharge":
+            print('{key}:{value}'.format(key=key, value=value))
+    for key,value in response["data"]["dayRange"][4].items():
+        if key != "avgFirstRecharge" and key != "avgSecondRecharge" and key != "firstRecharge" and key != "secondRecharge":
+            print('{key}:{value}'.format(key=key, value=value))
+    for key,value in response["data"]["dayRange"][5].items():
+        if key != "avgFirstRecharge" and key != "avgSecondRecharge" and key != "firstRecharge" and key != "secondRecharge":
+            print('{key}:{value}'.format(key = key , value = value))
     # print(response)
     #print(response['data']['dayRange'][1]['firstRechargeRate'])
     if response["data"]['dayRange'][1]['firstRechargeRate'] == 0:
@@ -555,6 +594,9 @@ def bet_blocks():
     # print(r)
     response = r.json()  # 轉json
     # print(response)
+    for key,value in response["data"].items():
+        # if key !="":
+            print('{key}:{value}'.format(key = key , value = value))
     if response["data"]["availableBetTotal"] == 0:
         print("availableBetTotal_Error")
     if response["data"]["betTotal"] == 0:
@@ -585,6 +627,9 @@ def live_blocks():
     # print(r)
     response = r.json()  # 轉json
     # print(response['data']['pieChart']['routineConsumption'])
+    for key,value in response["data"].items():
+        if key !="jbcpBar" and key !="pieChart":
+            print('{key}:{value}'.format(key = key , value = value))
     if response["data"]["availableBetTotal"] == 0:
         print("availableBetTotal_Error")
     if response["data"]["avgAmount"] == 0:
@@ -615,6 +660,9 @@ def live_blocks():
         print("siteDiamondReducet_Error")
     if response["data"]["totalProfit"] == 0:
         print("totalProfit_Error")
+    for key,value in response["data"]["pieChart"].items():
+        if key !="defend" and key !="guardianceEnable" and key !="proceedGuardiance" and key !="reward" and key !="transport" and key !="vip":
+            print('{key}:{value}'.format(key = key , value = value))
     if response['data']['pieChart']['barrage'] == 0:
         print("barrage_Error")
     if response['data']['pieChart']['buyVip'] == 0:
@@ -654,6 +702,9 @@ def businessReport():
     # print(r)
     response = r.json()  # 轉json
     # print(response)
+    for key,value in response["totalData"].items():
+        if key !="totalBindCount":
+            print('{key}:{value}'.format(key = key , value = value))
     if response["totalData"]["availableBetSum"] == 0:
         print("availableBetSum_Error")
     if response["totalData"]["betSum"] == 0:
@@ -686,7 +737,9 @@ def businessReport():
         print("winBetDiff_Error")
     if response["totalData"]["winBetDiffRechargeRate"] == 0:
         print("winBetDiffRechargeRate_Error")
-
+    for key,value in response["data"][186].items():
+        if key !="totalBindCount" and key !="createAt" and key !="updateAt":
+            print('{key}:{value}'.format(key = key , value = value))
     if response["data"][186]["availableBetSum"] == 0:
         print("availableBetSum_Error")
     if response["data"][186]["betSum"] == 0:
@@ -743,6 +796,9 @@ def dailyReport():
     # print(list(response["data"].values()))
     # if (list(response["data"].values())) == 0:
     #print(response['data']['gameList'][0]['availableBetSum'])
+    for key,value in response['data']['gameList'][0].items():
+        if key !="availableBetSumGrowthRate" and key !="betGrowthRate" and key !="betUserCountGrowthRate" and key !="detail" and key !="fsMoneyGrowthRate" and key !="incomeGrowthRate":
+            print('{key}:{value}'.format(key = key , value = value))
     if (response['data']['gameList'][0]['availableBetSum']) == 0:
         print("gameList-availableBetSum_Error")
     if (response['data']['gameList'][0]['bet']) == 0:
@@ -757,6 +813,9 @@ def dailyReport():
         print("gameList-income_Error")
     else:
         print("日報表-遊戲數據(6)_Check OK")
+    for key,value in response['data']['liveList'][0].items():
+        if key !="activityMoneyGrowthRate" and key !="cashoutGrowthRate" and key !="diamondRechargeGrowthRate" and key !="diamondUseGrowthRate" and key !="rechargeGrowthRate":
+            print('{key}:{value}'.format(key = key , value = value))
     #print(response['data']['liveList'][0]['activityMoney'])
     if (response['data']['liveList'][0]['activityMoney']) == 0:
         print("liveList-activityMoney_Error")
@@ -840,6 +899,9 @@ def gameBet():
     #print(_data)
     # print(r)
     response = r.json()  # 轉json
+    for key,value in response["totalData"].items():
+        # if key !="":
+            print('{key}:{value}'.format(key = key , value = value))
     if response["totalData"]["availableBetSum"] == 0:
         print("availableBetSum_Error")
     if response["totalData"]["betCount"] == 0:
@@ -855,6 +917,9 @@ def gameBet():
     else:
         print("遊戲注單統計(6)_Check OK")
     #print(response['data'][0])
+    for key,value in response['data'][0].items():
+         if key !="gameType" and key !="gameTypeName" and key !="pid" and key !="supplier" and key !="timezone":
+            print('{key}:{value}'.format(key = key , value = value))
     if (response['data'][0]['availableBetSum']) == 0:
         print("波音彩票availableBetSum_Error")
     if (response['data'][0]['betCount']) == 0:
@@ -894,6 +959,9 @@ def gameBetDetail():
     # for i in response:
     #     print(i)
     #print(response)
+    for key,value in response["totalData"].items():
+        if key !="tip":
+            print('{key}:{value}'.format(key = key , value = value))
     if response["totalData"]["availableBetNum"] == 0:
         print("availableBetNum_Error")
     if response["totalData"]["betCount"] == 0:
@@ -909,6 +977,9 @@ def gameBetDetail():
     else:
         print("遊戲數據列表(5)_Check ok")
     #print(response["data"][9]["availableBetNum"])
+    for key,value in response["data"][9].items():
+        if key !="gameName" and key !="pid" and key !="supplier" and key !="tip":
+            print('{key}:{value}'.format(key = key , value = value))
     if response["data"][9]["availableBetNum"] == 0:
         print("availableBetNum_Error")
     if response["data"][9]["betCount"] == 0:
@@ -924,7 +995,7 @@ def gameBetDetail():
 
 if __name__== '__main__':
     #channels()
-    # rechargeCashoutDiff()#數據總表
+     rechargeCashoutDiff()#數據總表
     # newRegCount()#數據總表
     # firstDayPayRate()#數據總表
     # agentData()#數據總表
@@ -936,7 +1007,7 @@ if __name__== '__main__':
     # recharge() #數據總表_會員財務數據-首充/二充
     # bet_blocks() #數據總表_遊戲數據
     # live_blocks() #數據總表_遊戲數據
-     businessReport() #經營報表
+    # businessReport() #經營報表
     # dailyReport() #日報表
     # gameBet() #遊戲注單列表
     # gameBetDetail() #遊戲數據列表
