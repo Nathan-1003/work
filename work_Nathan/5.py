@@ -52,6 +52,7 @@ def rechargeCashoutDiff():
     response = r.json()  # 轉json
     # print(response)
     #print(response["data"]["rechargeCashoutDiff"])
+    print('--------首頁_充提差(13)--------')
     for key,value in response["data"].items():
         if key !=("rechargeCashoutChartValue"):# !=>>key=該名及排除
             print('{key}:{value}'.format(key = key , value = value))
@@ -102,6 +103,7 @@ def newRegCount():
     # print(r)
     response = r.json()  # 轉json
     # print(response)
+    print('--------首頁_新增會員數(6)--------')
     for key,value in response["data"].items():
         if key != "onlineUser" and key !="activeOnline" :# !=>>key=該名及排除
             print('{key}:{value}'.format(key = key , value = value))
@@ -142,6 +144,7 @@ def firstDayPayRate():
     # print(r)
     response = r.json()  # 轉json
     # print(response)
+    print('--------首頁_付費率(5)--------')
     for key,value in response["data"].items():
         if key != "secondRecharge" and key !="secondRechargeMoney" :# !=>>key=該名及排除
             print('{key}:{value}'.format(key = key , value = value))
@@ -179,8 +182,9 @@ def agentData():
     #print(_data)
     # print(r)
     response = r.json()
+    print('--------首頁_代理數據(3)--------')
     for key,value in response["data"].items():
-        if key != "agentAvailableBetNum" and key !="agentGameBonus" and key !="agentLiveBonus":# !=>>key=該名及排除
+        if key != "agentAvailableBetNum" and key !="agentGameBonus" and key !="agentLiveBonus"and key !="agentSubChannelCount"and key !="agentTotalBonus"and key !="agentUserCount":# !=>>key=該名及排除
             print('{key}:{value}'.format(key = key , value = value))
     # print(response)
     # if response["data"]["agentAvailableBetNum"] == 0:
@@ -215,7 +219,7 @@ def gameData():
     # print(_data)
     # print(r)
     response = r.json()
-    # print(response)
+    print('--------首頁_遊戲數據(52)--------')
     for key,value in response["data"].items():
         if key !="djCount" and key !="djIncome" and key !="djAvailableBetSum" and key !="djKillRate" and key !="djTotalBet" and key !="djUserCount":
             print('{key}:{value}'.format(key = key , value = value))
@@ -368,6 +372,7 @@ def podcastDiamond():
     #print(r.text)
     response = r.json()
     # print(response)
+    print('--------首頁_直播數據(9)--------')
     for key,value in response["data"].items():
         if key !="podcastTotalTicket" and key !="ticketChartValue" and key !="useDiamond":
             print('{key}:{value}'.format(key = key , value = value))
@@ -412,6 +417,7 @@ def diamondConsumption():
     #print(r.text)
     response = r.json()
     # print(response)
+    print('--------首頁_鑽石消耗(2)--------')
     if response["data"]["totalDiamond"] == 0:
         print("totalDiamond_Error")
     if response["data"]["totalUserCount"] == 0:
@@ -437,6 +443,7 @@ def profiles():
     # print(_data)
     # print(r)
     response = r.json()  # 轉json
+    print('--------二級頁面_會員財務數據-會員(3)--------')
     for key,value in response["data"].items():
         if key !="activities" and key !="cashes" and key !="payments":
             print('{key}:{value}'.format(key = key , value = value))
@@ -474,6 +481,7 @@ def online():
     # print(_data)
     # print(r)
     response = r.json()  # 轉json
+    print('--------二級頁面_會員財務數據-活躍(3)--------')
     for key,value in response["data"].items():
         if key !="active"and key !="online" and key !="register" and key !="totalActive" and key !="totalOnline":
             print('{key}:{value}'.format(key = key , value = value))
@@ -515,6 +523,7 @@ def recharge():
     # print(_data)
     # print(r)
     response = r.json()  # 轉json
+    print('--------二級頁面_會員財務數據-首充/二充(20)--------')
     for key,value in response["data"]["dayRange"][1].items():
         if key !="avgFirstRecharge" and key !="avgSecondRecharge" and key !="firstRecharge" and key !="secondRecharge":
             print('{key}:{value}'.format(key=key, value=value))
@@ -594,6 +603,7 @@ def bet_blocks():
     # print(r)
     response = r.json()  # 轉json
     # print(response)
+    print('--------二級頁面_遊戲數據(4)--------')
     for key,value in response["data"].items():
         # if key !="":
             print('{key}:{value}'.format(key = key , value = value))
@@ -626,6 +636,7 @@ def live_blocks():
     # print(_data)
     # print(r)
     response = r.json()  # 轉json
+    print('--------二級頁面_直播數據(15)+鑽石支出(8)--------')
     # print(response['data']['pieChart']['routineConsumption'])
     for key,value in response["data"].items():
         if key !="jbcpBar" and key !="pieChart":
@@ -702,6 +713,7 @@ def businessReport():
     # print(r)
     response = r.json()  # 轉json
     # print(response)
+    print('--------經營報表(15)+商戶yy(15)--------')
     for key,value in response["totalData"].items():
         if key !="totalBindCount":
             print('{key}:{value}'.format(key = key , value = value))
@@ -796,6 +808,7 @@ def dailyReport():
     # print(list(response["data"].values()))
     # if (list(response["data"].values())) == 0:
     #print(response['data']['gameList'][0]['availableBetSum'])
+    print('--------日報表-遊戲數據(6)+日報表-直播數據(8)--------')
     for key,value in response['data']['gameList'][0].items():
         if key !="availableBetSumGrowthRate" and key !="betGrowthRate" and key !="betUserCountGrowthRate" and key !="detail" and key !="fsMoneyGrowthRate" and key !="incomeGrowthRate":
             print('{key}:{value}'.format(key = key , value = value))
@@ -899,6 +912,7 @@ def gameBet():
     #print(_data)
     # print(r)
     response = r.json()  # 轉json
+    print('--------遊戲注單統計(6)+類型-波音彩票(6)--------')
     for key,value in response["totalData"].items():
         # if key !="":
             print('{key}:{value}'.format(key = key , value = value))
@@ -959,6 +973,7 @@ def gameBetDetail():
     # for i in response:
     #     print(i)
     #print(response)
+    print('--------遊戲數據列表(5)+類型-動博體育(5)--------')
     for key,value in response["totalData"].items():
         if key !="tip":
             print('{key}:{value}'.format(key = key , value = value))
@@ -995,19 +1010,19 @@ def gameBetDetail():
 
 if __name__== '__main__':
     #channels()
-     rechargeCashoutDiff()#數據總表
-    # newRegCount()#數據總表
-    # firstDayPayRate()#數據總表
-    # agentData()#數據總表
-    # gameData()#數據總表
-    # podcastDiamond()#數據總表
-    # diamondConsumption()#數據總表
-    # profiles()#數據總表_會員財務數據-會員
-    # online()#數據總表_會員財務數據-活躍
-    # recharge() #數據總表_會員財務數據-首充/二充
-    # bet_blocks() #數據總表_遊戲數據
-    # live_blocks() #數據總表_遊戲數據
-    # businessReport() #經營報表
-    # dailyReport() #日報表
-    # gameBet() #遊戲注單列表
-    # gameBetDetail() #遊戲數據列表
+    rechargeCashoutDiff()#數據總表
+    newRegCount()#數據總表
+    firstDayPayRate()#數據總表
+    agentData()#數據總表
+    gameData()#數據總表
+    podcastDiamond()#數據總表
+    diamondConsumption()#數據總表
+    profiles()#數據總表_會員財務數據-會員
+    online()#數據總表_會員財務數據-活躍
+    recharge() #數據總表_會員財務數據-首充/二充
+    bet_blocks() #數據總表_遊戲數據
+    live_blocks() #數據總表_遊戲數據
+    businessReport() #經營報表
+    dailyReport() #日報表
+    gameBet() #遊戲注單列表
+    gameBetDetail() #遊戲數據列表
