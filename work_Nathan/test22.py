@@ -10,14 +10,15 @@ db_connection = 'mysql+pymysql://root:oh_my_ody!@34.142.180.39:13306/data_center
 
 #sql_channel_id = pd.read_sql('SELECT channel_id FROM data_center.channel GROUP BY channel_id ORDER BY channel_id', con=db_connection)
 #sql_channel_id = pd.read_sql('SELECT channel_id,count(*) AS count FROM data_center.channel GROUP BY channel_id ORDER BY channel_id', con=db_connection)
-sql_channel_id = pd.read_sql('SELECT * FROM data_center.channel LIMIT 10 ', con=db_connection)
+sql_channel_id = pd.read_sql('SELECT * FROM data_center.channel LIMIT 5  ', con=db_connection)
 
+# print(sql_channel_id)
+# js = sql_channel_id.to_json()
+js_1 = json.dumps(sql_channel_id)
+print(type(js_1))
 
-print(sql_channel_id)
-js = sql_channel_id.to_json()
-js_1 = json.dumps(js)
 app = Dash(__name__)
-app.layout = dash_table.DataTable(sql_channel_id .to_dict('records'), [{"name": i, "id": i} for i in sql_channel_id]) #排版
+# app.layout = dash_table.DataTable(sql_channel_id .to_dict('records'), [{"name": i, "id": i} for i in sql_channel_id]) #排版
 
 if __name__ == '__main__':
     app.run_server(debug=True)

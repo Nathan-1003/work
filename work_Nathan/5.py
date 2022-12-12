@@ -767,7 +767,7 @@ def businessReport():
     if response["data"][186]["firstRechargeCount"] == 0:
         print("firstRechargeCount_Error")
     if response["data"][186]["fsMoney"] == 0:
-        print("fsMoney_Error，This Channel NO fsMoney")
+        print("\033[31mfsMoney_Error，This Channel NO fsMoney")
     if response["data"][186]["playerCount"] == 0:
         print("playerCount_Error")
     if response["data"][186]["recharge"] == 0:
@@ -1010,19 +1010,19 @@ def gameBetDetail():
 
 if __name__== '__main__':
     #channels()
-    rechargeCashoutDiff()#數據總表
-    newRegCount()#數據總表
-    firstDayPayRate()#數據總表
-    agentData()#數據總表
-    gameData()#數據總表
-    podcastDiamond()#數據總表
-    diamondConsumption()#數據總表
-    profiles()#數據總表_會員財務數據-會員
-    online()#數據總表_會員財務數據-活躍
-    recharge() #數據總表_會員財務數據-首充/二充
-    bet_blocks() #數據總表_遊戲數據
-    live_blocks() #數據總表_遊戲數據
-    businessReport() #經營報表
-    dailyReport() #日報表
-    gameBet() #遊戲注單列表
-    gameBetDetail() #遊戲數據列表
+    # rechargeCashoutDiff()#數據總表
+    # newRegCount()#數據總表
+    # firstDayPayRate()#數據總表
+    # agentData()#數據總表
+    # gameData()#數據總表
+    # podcastDiamond()#數據總表
+    # diamondConsumption()#數據總表
+    # profiles()#數據總表_會員財務數據-會員
+    # online()#數據總表_會員財務數據-活躍
+    # recharge() #數據總表_會員財務數據-首充/二充
+    # bet_blocks() #數據總表_遊戲數據
+    # live_blocks() #數據總表_遊戲數據
+     businessReport() #經營報表
+    # dailyReport() #日報表
+    # gameBet() #遊戲注單列表
+    # gameBetDetail() #遊戲數據列表

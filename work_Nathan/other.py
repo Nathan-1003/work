@@ -22,16 +22,6 @@ t = json.loads(r.text)#定義token取用
 token = t["token"] #response提取的token使用
 #print(token)
 
-def channels():#總表
-    url = ' http://8.219.83.66:8088/admin/v2/system/dict/data/channels'
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": token
-    }
-    data = '{"pageNum":"1","pagesize":"10000"}'
-    r = requests.post(url, headers=headers, data=data)
-    print(r.text)
-
 def rechargeCashoutDiff():
     url = ' http://8.219.83.66:8088/admin/dataCenter/dataSummary/rechargeCashoutDiff/'
     headers = {
@@ -48,9 +38,19 @@ def rechargeCashoutDiff():
     _data = json.dumps(data)
     r = requests.post(url, headers=headers, data=_data)
     #print(_data)
-    print(r)
+    #print(r)
     response = r.json()  # 轉json
-    #print(response)
+    #print(type(response["data"]))
+    # print(response["data"])
+    for key,value in response["data"].items():
+        if key !="rechargeCashoutChartValue":
+            print('{key}:{value}'.format(key = key , value = value))
+    # for key in response["data"].keys():
+    #     print('key = {}'.format(key))
+    # for value in response["data"].values():
+    #     print('value = {}'.format(value))
+
+
     if response["data"]["rechargeCashoutDiff"] == 0:
         print("rechargeCashoutDiff_Error")
     if response["data"]["activityDetailCount"] == 0:
@@ -75,7 +75,49 @@ def rechargeCashoutDiff():
         print("onlineRechargeCount_Error")
     if response["data"]["onlineRechargeUsers"] == 0:
         print("onlineRechargeUsers_Error")
+    else:
+        print("OK")
+
+def newRegCount():
+    url = ' http://8.219.83.66:8088/admin/dataCenter/dataSummary/newRegCount/'
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": token
+    }
+    data = {'beginTime':date_begintime_stamp,
+            'channelId':'',
+            'currency':'',
+            'device':'',
+            'endTime':date_endtime_stamp,
+            'openChannelId':''}
+    _data = json.dumps(data)
+    r = requests.post(url, headers=headers, data=_data)
+    #print(_data)
+    # print(r)
+    response = r.json()  # 轉json
+    # print(response)
+    for key,value in response["data"].items():
+        if key !=("onlineUser","dailyAvgAct"):# !=>>key=該名及排除
+            print('{key}:{value}'.format(key = key , value = value))
+    # if response["data"]["activeOnline"] == 0:
+    #     print("activeOnline_Error")
+    if response["data"]["dailyAvgAct"] == 0:
+        print("dailyAvgAct_Error")
+    if response["data"]["dailyAvgOnline"] == 0:
+        print("dailyAvgOnline_Error")
+    if response["data"]["newRegCount"] == 0:
+        print("newRegCount_Error")
+    if response["data"]["onlinePodcast"] == 0:
+        print("onlinePodcast_Error")
+    # if response["data"]["onlineUser"] == 0:
+    #     print("onlineUser_Error")
+    if response["data"]["totalBindCount"] == 0:
+        print("totalBindCount_Error")
+    if response["data"]["totalRegCount"] == 0:
+        print("totalRegCount_Error")
+    else :
+        print("數據總表新增會員欄位(6)_Check OK")
 
 if __name__== '__main__':
     rechargeCashoutDiff()
-
+    # newRegCount()
