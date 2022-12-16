@@ -24,22 +24,21 @@ results = cur.fetchall()#查詢結果
 #print(results)
 data = [dict(zip(headers, row)) for row in results]#將表的標題和查詢結果組合成字典
 print(data)
+
+# for key,value in data[0].items():
+#     print('{key}:{value}'.format(key=key, value=value))
+
 cur.close()
 
-
-app = Flask(__name__)
-
+app = flask.Flask(__name__)
 @app.route("/")
-def index():
+
+def hello():
+    return(data)
+
+if __name__ == '__main__':
     app.run()
-# app = flask.Flask(__name__)
-# @app.route("/")
-#
-# def hello():
-#     return(json.loads(js))
-#
-# if __name__ == '__main__':
-#     app.run()
+
 
 
 
