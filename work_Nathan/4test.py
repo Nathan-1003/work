@@ -32,14 +32,14 @@ print(data)
 cur.close()
 
 app = flask.Flask(__name__)
-CORS(app)
+CORS(app)#增加header
 
 @app.route("/")
 def hello():
     return(data)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=4999)
+    app.run(host='0.0.0.0', port=4999)# 更改port
 
 
 
