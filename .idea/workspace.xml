@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5278449f-ad7b-477a-ad47-5be97e2cf81c" name="Changes" comment="ian help">
-      <change beforePath="$PROJECT_DIR$/work_Nathan/4test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_Nathan/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/work_Nathan/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/work_Nathan/test.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,13 +46,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/nathan/PycharmProjects/pythonProject/work_Nathan&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/nathan/PycharmProjects/pythonProject",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/work_Nathan" />
