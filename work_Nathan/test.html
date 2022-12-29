@@ -11,9 +11,21 @@
   headers: {
 <!--    "Access-Control-Allow-Origin": "*"-->
   },
-  success: function(response) {
 
-    $('body').text(response);
+  success: function(response) {
+   console.error(response)
+    let str = ""
+    for(let i=0; i < response.length; i++){
+        console.error(1)
+
+        for (const [key, value] of Object.entries(response[i])) {
+        console.error(`${key}: ${value}`);
+        str += `${key}:${value},`
+     }
+    }
+
+    console.error(response)
+    $('body').text(str);
   },
   error: function(xhr, status, error) {
     // 處理請求失敗的情況
@@ -25,7 +37,6 @@
     <title>Channel</title>
 </head>
 <body>
-    HELLO
 </body>
 </html>
 
